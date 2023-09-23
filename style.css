@@ -90,13 +90,16 @@
     font-weight: lighter;
     color: #463EEA;
 }
+#profile p {
+    margin-bottom: 10px;
+}
 #profile p strong{
     font-weight: 500;
 }
 
 #profile button{
     width: 100%;
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 14px;
     background-image: linear-gradient(#625BF7, #463EEA);
     border: none;
@@ -110,14 +113,25 @@
 /* @media screen and (max-width: 360px) and (min-width: 260px)  {
     
 } */
- @media screen and (min-width: 260px) and (max-width: 360px)  {
+ @media screen and (min-width: 312px) and (max-width: 414px)  {
     #profile {
-        width: 300px;
+        width: 325px;
         padding: 15px;
         
     }
     #signup-form{
-        width: 300px;
+        width: 325px;
         padding: 15px;
+    }
+}
+ @media screen and (max-width:311px)  {
+    #profile {
+        width: 290px;
+        padding: 10px;
+        
+    }
+    #signup-form{
+        width: 290px;
+        padding: 10px;
     }
 }
