@@ -60,17 +60,46 @@
 
 /* DashBoard */
 
+#dashboard h2{
+    text-align: center;
+    color: #463EEA;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
 #profile {
-    background-color: cornflowerblue;
+    background-color: white;
+    box-shadow: 1px 1px  10px rgb(171, 171, 171);
+    border-radius: 5px;
     width: 400px;
     padding: 30px;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+#profile h3{
+    font-weight: 550;
+    margin-bottom: 10px;
 }
 #profile .fa-user{
-    font-size: 100px;
+    margin-bottom: 15px;
+    font-size: 50px;
     font-weight: lighter;
-    color: rebeccapurple;
+    color: #463EEA;
+}
+#profile p strong{
+    font-weight: 500;
+}
+
+#profile button{
+    width: 100%;
+    margin-top: 40px;
+    padding: 14px;
+    background-image: linear-gradient(#625BF7, #463EEA);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 30px;
 }
