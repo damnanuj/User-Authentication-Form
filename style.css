@@ -71,8 +71,9 @@
     background-color: white;
     box-shadow: 1px 1px  10px rgb(171, 171, 171);
     border-radius: 5px;
-    width: 400px;
-    padding: 30px;
+    width: 380px;
+    padding: 20px;
+    padding-top: 30px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -102,4 +103,21 @@
     border-radius: 5px;
     color: white;
     margin-bottom: 30px;
+}
+
+
+
+/* @media screen and (max-width: 360px) and (min-width: 260px)  {
+    
+} */
+ @media screen and (min-width: 260px) and (max-width: 360px)  {
+    #profile {
+        width: 300px;
+        padding: 15px;
+        
+    }
+    #signup-form{
+        width: 300px;
+        padding: 15px;
+    }
 }
