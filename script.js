@@ -2,13 +2,16 @@ function generateRandomToken() {
     return Math.floor(Math.random() * 900000 + 100000);
 }
 
+// local storAge
+
+// saving DaTa
 function saveToLocalStorage(fullName, email, password, token) {
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
     localStorage.setItem('password', password);
     localStorage.setItem('token', token);
 }
-
+// Getting Data fROm local storAge
 function getFromLocalStorage() {
     const fullName = localStorage.getItem('fullName');
     const email = localStorage.getItem('email');
@@ -17,6 +20,8 @@ function getFromLocalStorage() {
     return { fullName, email, password, token };
 }
 
+
+// filling details 
 function showProfile() {
     const fullName = document.getElementById("fullName").value;
     const email = document.getElementById("email").value;
@@ -35,7 +40,16 @@ function showProfile() {
         document.getElementById("error-message").textContent = "";
     }
 
-    const token = generateRandomToken();
+     // Checking if user is already logged in
+     const storedData = getFromLocalStorage();
+     let token;
+     if (storedData.email) {
+         //if already logged in, reuse the existing token
+         token = storedData.token;
+     } else {
+         // ifnot logged in, generate a new token
+         token = generateRandomToken();
+     }
     saveToLocalStorage(fullName, email, password, token);
 
     document.getElementById("profileFullName").textContent = " " + fullName;
@@ -45,7 +59,7 @@ function showProfile() {
 
     document.getElementById("signup-form").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
-    document.getElementById("profile").style.display = "block";
+    document.getElementById("profile").style.display = "flex";
 }
 
 function showSignupForm() {
@@ -58,6 +72,7 @@ function showSignupForm() {
     document.getElementById("error-message").textContent = "";
 }
 
+//data not lost even after reloading the pAge
 window.onload = function() {
     const storedData = getFromLocalStorage();
     if (storedData.email) {
