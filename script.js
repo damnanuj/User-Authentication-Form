@@ -1,10 +1,20 @@
-
-
-
 function generateRandomToken() {
-    // Generate a random 6-digit token
-    const token = Math.floor(Math.random() * 900000 + 100000);
-    return token;
+    return Math.floor(Math.random() * 900000 + 100000);
+}
+
+function saveToLocalStorage(fullName, email, password, token) {
+    localStorage.setItem('fullName', fullName);
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+    localStorage.setItem('token', token);
+}
+
+function getFromLocalStorage() {
+    const fullName = localStorage.getItem('fullName');
+    const email = localStorage.getItem('email');
+    const password = localStorage.getItem('password');
+    const token = localStorage.getItem('token');
+    return { fullName, email, password, token };
 }
 
 function showProfile() {
@@ -13,44 +23,48 @@ function showProfile() {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // Checking if all fields are filled or not
-    if (!fullName || !email || !password) {
-        document.getElementById("error-message").textContent = "Oops! All fields are mandatory!";
+    if (!fullName || !email || !password || !confirmPassword) {
+        document.getElementById("error-message").textContent = "Oops! All fields are mandatory.";
         return;
-    } 
-    else {
-        // Clear the error message if all fields are filled
-        document.getElementById("error-message").textContent = "";
     }
 
     if (password !== confirmPassword) {
         document.getElementById("error-message").textContent = "Oops! Passwords do not match.";
         return;
-    } 
-    else {
-        // Clear the error message if all fields are filled and passwords match
+    } else {
         document.getElementById("error-message").textContent = "";
     }
 
-    const token = generateRandomToken(); // Generate the random token
+    const token = generateRandomToken();
+    saveToLocalStorage(fullName, email, password, token);
 
     document.getElementById("profileFullName").textContent = " " + fullName;
     document.getElementById("profileEmail").textContent = " " + email;
     document.getElementById("profileToken").textContent = " " + token;
     document.getElementById("profilePassword").textContent = " " + password;
 
-    // Hide the signup form and show the profile
     document.getElementById("signup-form").style.display = "none";
-    document.getElementById("profile").style.display = "flex";
-    document.getElementById("dashboard").style.display ="block";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("profile").style.display = "block";
 }
 
 function showSignupForm() {
-    // Clear the input fields
-    document.getElementById("signup").reset();
-
-    // Show the signup form and hide the profile
+    localStorage.clear();
     document.getElementById("signup-form").style.display = "block";
     document.getElementById("profile").style.display = "none";
-    document.getElementById("dashboard").style.display ="none";
+    document.getElementById("dashboard").style.display = "none";
+
+    document.getElementById("signup").reset();
+    document.getElementById("error-message").textContent = "";
+}
+
+window.onload = function() {
+    const storedData = getFromLocalStorage();
+    if (storedData.email) {
+        document.getElementById("fullName").value = storedData.fullName;
+        document.getElementById("email").value = storedData.email;
+        document.getElementById("password").value = storedData.password;
+        document.getElementById("confirmPassword").value = storedData.password;
+        showProfile();
+    }
 }
