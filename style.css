@@ -133,7 +133,7 @@
     padding: 15px;
   }
   .me {
-    bottom: 110px;
+    bottom: 50px;
 }
 }
 @media screen and (max-width: 311px) {
@@ -146,7 +146,7 @@
     padding: 10px;
   }
   .me {
-    bottom: 110px;
+    bottom: 50px;
 }
   
 }
